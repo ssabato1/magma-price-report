@@ -1,41 +1,42 @@
-# MAGMA 가격 모니터링 리포트 (스타터)
+# FIC 가격·베뉴 경쟁 분석 리포트
 
-경쟁 제품 가격을 **세그먼트별(저가·중가·프리미엄)** 로 모아 정적 웹 리포트로
-배포하는 작은 프로젝트입니다. 이 강의에서 **git 과 GitHub 을 실전으로 익히기
-위한 출발점**으로 씁니다.
+FIC 세빛섬 플로팅아일랜드를 기준으로 서울 유니크베뉴와 4~5성급 호텔 경쟁사를 비교하는 정적 웹 리포트입니다.
+
+## 분석 범위
+
+- 기준 베뉴: FIC 세빛섬 플로팅아일랜드 / Floating Island Convention
+- 전체 경쟁군: 서울관광재단 Seoul MICE Alliance Unique Venue Search 기준, 서울의 150석 이상 유니크베뉴 전체
+- 보조 출처: 한국관광공사 K-MICE 코리아 유니크베뉴
+- 지정 경쟁사: JW 메리어트 호텔 서울 반포, 신라호텔, 코엑스, 인스파이어, 한국의집, 삼청각, 이랜드크루즈, 콘래드호텔, 롯데호텔, 포시즌스 호텔
+- 예외 포함: 한국의집과 이랜드크루즈는 서울관광재단 수용인원 기준 150석 미만이지만, 지정 경쟁사이므로 전체 경쟁군 표에도 포함
+- 분석 축: 메뉴가격, 홀/공간 사이즈, 수용인원, MICE 행사, 웨딩 행사, 돌잔치·가족연회 적합성
 
 ## 무엇이 들어 있나
 
 ```
-magma-price-report/
-├─ build.py                 리포트 생성기 (표준 라이브러리만, 의존성 없음)
-├─ templates/report.html.tmpl  리포트 HTML 틀
+fic-price-report/
+├─ build.py                         리포트 생성기 (표준 라이브러리만, 의존성 없음)
+├─ templates/report.html.tmpl        리포트 HTML 틀
 ├─ data/
-│  └─ mid.json             중가 세그먼트 (미리 채워진 예시)
-├─ sources.md              데이터 출처 목록
+│  ├─ fic_venue_competitors.json     FIC 경쟁 베뉴 분석 데이터
+│  └─ mid.json                       원본 스타터 예시 데이터(보존)
+├─ sources.md                        데이터 출처와 확인 한계
 └─ .github/workflows/
-   ├─ check.yml            PR 마다 도는 자동 검문 (데이터·빌드 검사)
-   └─ deploy.yml           main 에 합쳐지면 리포트를 GitHub Pages 로 배포
+   ├─ check.yml                      PR 마다 도는 자동 검문
+   └─ deploy.yml                     main 에 합쳐지면 GitHub Pages 로 배포
 ```
-
-`data/budget.json`(저가) 과 `data/premium.json`(프리미엄) 은 **아직 없습니다.**
-이 강의에서 여러분(과 여러분의 에이전트)이 채워 넣을 빈칸입니다.
 
 ## 직접 해보기
 
 ```bash
-# 내려받기 (여러분 계정으로 복제)
-gh repo fork --clone dandacompany/magma-price-report
-
-# 리포트 한번 만들어 보기
-cd magma-price-report
 python3 build.py
-open _site/index.html      # 만들어진 리포트를 브라우저로 열기
+open _site/index.html
 ```
 
-## 배포를 켜는 법 (한 번만)
+## 데이터 해석 원칙
 
-저장소 **Settings → Pages → Source** 를 **GitHub Actions** 로 바꾸면,
-이후 main 에 변경이 합쳐질 때마다 리포트가 자동으로 다시 배포됩니다.
+메뉴가격은 공식 웹페이지에 공개된 정가만 숫자로 넣습니다. 현재 다수 호텔·베뉴는 메뉴 단가를 공개하지 않고 별도 문의 방식으로 운영하므로, 추정 가격을 넣지 않고 “공식 공개 단가 확인 필요”로 표시했습니다.
 
-배포 주소는 보통 `https://<your-id>.github.io/magma-price-report/` 입니다.
+## 배포를 켜는 법
+
+저장소 Settings → Pages → Source 를 GitHub Actions 로 바꾸면, 이후 main 에 변경이 합쳐질 때마다 리포트가 자동으로 다시 배포됩니다.
