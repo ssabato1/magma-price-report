@@ -3,29 +3,46 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MAGMA 가격 모니터링 리포트</title>
+<title>$title</title>
 <style>
-  body{font-family:system-ui,"Apple SD Gothic Neo",sans-serif;max-width:760px;
-    margin:40px auto;padding:0 20px;color:#1a1a1a;background:#fafafa}
-  h1{font-size:24px;border-bottom:3px solid #A0522D;padding-bottom:10px}
-  .sub{color:#666;font-size:14px;margin-bottom:24px}
-  table{width:100%;border-collapse:collapse;background:#fff;
-    box-shadow:0 1px 3px rgba(0,0,0,.08)}
-  th,td{padding:12px 14px;text-align:left;border-bottom:1px solid #eee}
-  th{background:#A0522D;color:#fff;font-size:14px}
-  .price{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
-  footer{margin-top:24px;color:#999;font-size:12px}
+  :root{--fic:#123c69;--accent:#d4a017;--line:#e8e8e8;--muted:#666;--bg:#f7f8fa}
+  body{font-family:system-ui,"Apple SD Gothic Neo",sans-serif;max-width:1280px;margin:36px auto;padding:0 22px;color:#1a1a1a;background:var(--bg);line-height:1.55}
+  h1{font-size:30px;margin:0 0 8px;border-bottom:4px solid var(--fic);padding-bottom:12px}
+  h2{margin-top:34px;font-size:22px}.sub{color:var(--muted);margin-bottom:18px}.notice{background:#fff8e1;border-left:5px solid var(--accent);padding:14px 18px;margin:20px 0}.notice ul{margin:8px 0 0 18px;padding:0}
+  .cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:18px 0}.cards article{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+  .cards h3{margin:0 0 8px;color:var(--fic)}
+  table{width:100%;border-collapse:collapse;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.06);font-size:14px}th,td{padding:11px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}th{background:var(--fic);color:#fff;position:sticky;top:0}.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}.muted{color:var(--muted);font-size:12px}a{color:var(--fic)}
+  .table-wrap{overflow:auto;border-radius:10px;border:1px solid var(--line);margin-top:12px}footer{margin:28px 0;color:#888;font-size:12px}
+  @media(max-width:900px){.cards{grid-template-columns:1fr}body{padding:0 14px}table{font-size:13px}}
 </style>
 </head>
 <body>
-  <h1>MAGMA 가격 모니터링 리포트</h1>
-  <div class="sub">경쟁 제품 가격을 세그먼트별로 모아 본 표입니다.</div>
-  <table>
-    <thead><tr><th>세그먼트</th><th>제품</th><th>가격</th></tr></thead>
-    <tbody>
-$rows
-    </tbody>
-  </table>
-  <footer>이 페이지는 main 브랜치에 합쳐질 때마다 자동으로 다시 만들어집니다.</footer>
+  <h1>$title</h1>
+  <div class="sub">$basis</div>
+  <div class="notice"><strong>해석 원칙</strong><ul>$notes</ul></div>
+
+  <h2>행사 유형별 1차 분석</h2>
+  $event_analysis
+
+  <h2>지정 경쟁사 비교: 메뉴가격·홀 사이즈·수용인원·행사 적합성</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>베뉴</th><th>최대 수용</th><th>홀/공간 면적</th><th>메뉴가격</th><th>MICE 행사</th><th>웨딩 행사</th><th>돌잔치·가족연회</th><th>근거</th></tr>
+      </thead>
+      <tbody>$named_rows</tbody>
+    </table>
+  </div>
+
+  <h2>서울 150석 이상 유니크베뉴 + 지정 경쟁사 전체 경쟁군</h2>
+  <div class="sub">서울관광재단 Seoul MICE Alliance Unique Venue Search 공개 목록에서 최대 수용인원 150명 이상인 베뉴를 모두 추리고, 사용자가 지정한 한국의집·이랜드크루즈는 150석 미만이어도 별도 포함했다.</div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>구분</th><th>베뉴</th><th>최대 수용</th><th>공간 면적</th><th>출처</th></tr></thead>
+      <tbody>$unique_rows</tbody>
+    </table>
+  </div>
+
+  <footer>이 페이지는 main 브랜치에 합쳐질 때마다 자동으로 다시 만들어집니다. 메뉴가격은 공식 공개 단가가 확인되는 경우에만 숫자로 입력합니다.</footer>
 </body>
 </html>
