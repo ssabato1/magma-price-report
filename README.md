@@ -1,4 +1,4 @@
-# MAGMA 가격 모니터링 리포트 (스타터)
+# FIC 가격 모니터링 리포트 (스타터)
 
 경쟁 제품 가격을 **세그먼트별(저가·중가·프리미엄)** 로 모아 정적 웹 리포트로
 배포하는 작은 프로젝트입니다. 이 강의에서 **git 과 GitHub 을 실전으로 익히기
@@ -7,7 +7,7 @@
 ## 무엇이 들어 있나
 
 ```
-magma-price-report/
+FIC-price-report/
 ├─ build.py                 리포트 생성기 (표준 라이브러리만, 의존성 없음)
 ├─ templates/report.html.tmpl  리포트 HTML 틀
 ├─ data/
