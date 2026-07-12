@@ -40,3 +40,5 @@ open _site/index.html
 ## 배포를 켜는 법
 
 저장소 Settings → Pages → Source 를 GitHub Actions 로 바꾸면, 이후 main 에 변경이 합쳐질 때마다 리포트가 자동으로 다시 배포됩니다.
+
+로컬 실습용 리포트입니다.
